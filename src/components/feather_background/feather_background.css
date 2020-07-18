@@ -1,0 +1,24 @@
+.bg-C-transform {
+    animation-name: bg-transform-animation;
+    animation-duration: 16s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.bg-D-transform {
+    animation-name: bg-transform-animation;
+    animation-duration: 12s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+@keyframes bg-transform-animation {
+    from  {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 0 calc(100vh);
+    }
+}

@@ -1,0 +1,21 @@
+.shinku-avatar {
+    animation-name: loading-rotate;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+@keyframes loading-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    35% {
+        transform: rotate(235deg);
+    }
+    60% {
+        transform: rotate(-45deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}

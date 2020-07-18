@@ -1,0 +1,29 @@
+.show-white-bg {
+    animation-name: show-white-animation;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+.hide-white-bg {
+    animation-name: hide-white-animation;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+@keyframes show-white-animation {
+    0% {
+       opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes hide-white-animation {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

@@ -1,0 +1,36 @@
+.text {
+    color: white;
+    text-shadow: 1px 1px .1em #f7dd81, -1px -1px .1em #f7dd81, 1px -1px .1em #f7dd81, -1px 1px .1em #f7dd81;
+    font-size: 2em;
+    font-family: Cursive, serif;
+}
+
+@media screen and (max-width: 1500px) {
+    .text {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .shinku {
+        bottom: -20vh;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .text {
+        font-size: 1.8em;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .text {
+        font-size: 1.6em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .text {
+        font-size: 1.4em;
+    }
+}

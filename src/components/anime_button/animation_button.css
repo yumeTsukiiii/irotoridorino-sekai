@@ -1,0 +1,130 @@
+.main-text {
+    color: #00138f;
+    text-shadow: 1px 1px .2em #ffffff, -1px -1px .2em #ffffff, 1px -1px .2em #ffffff, -1px 1px .2em #ffffff;
+}
+
+.main-text-hover {
+    animation-name: hover-main-text-prev-animation, hover-main-text-next-animation;
+    animation-duration: 0.15s, 0.15s;
+    animation-delay: 0s, 0.15s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+.main-text-not-hover {
+    animation-name: not-hover-main-text-prev-animation, not-hover-main-text-next-animation;
+    animation-duration: 0.15s, 0.15s;
+    animation-delay: 0s, 0.15s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+.sub-text {
+    transform: scaleY(0);
+    color: white;
+    text-shadow: 1px 1px .2em #57f1ff, -1px -1px .2em #57f1ff, 1px -1px .2em #57f1ff, -1px 1px .2em #57f1ff;
+}
+
+.sub-text-hover {
+    animation-name: hover-sub-text;
+    animation-duration: 0.15s;
+    animation-delay: 0.15s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+.sub-text-not-hover {
+    animation-name: not-hover-sub-text;
+    animation-duration: 0.15s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+@keyframes not-hover-main-text-prev-animation {
+    from {
+        transform: rotateX(0deg) scaleY(1);
+    }
+    to {
+        transform: rotateX(0deg) scaleY(0);
+    }
+}
+
+@keyframes not-hover-main-text-next-animation {
+
+    100% {
+        transform: rotateX(0deg);
+        color: #00138f;
+        text-shadow: 1px 1px .1em #ffffff, -1px -1px .1em #ffffff, 1px -1px .1em #ffffff, -1px 1px .1em #ffffff;
+    }
+
+    75% {
+        text-shadow: 1px 1px .1em #57f1ff44, -1px -1px .1em #57f1ff44, 1px -1px .1em #57f1ff44, -1px 1px .1em #57f1ff44;
+    }
+
+    50% {
+        text-shadow: 1px 1px .1em #57f1ff88, -1px -1px .1em #57f1ff88, 1px -1px .1em #57f1ff88, -1px 1px .1em #57f1ff88;
+    }
+
+    25% {
+        text-shadow: 1px 1px .1em #57f1ffcc, -1px -1px .1em #57f1ffcc, 1px -1px .1em #57f1ffcc, -1px 1px .1em #57f1ffcc;
+    }
+
+    0% {
+        transform: rotateX(90deg);
+        color: white;
+        text-shadow: 1px 1px .1em #57f1ff, -1px -1px .1em #57f1ff, 1px -1px .1em #57f1ff, -1px 1px .1em #57f1ff;
+    }
+}
+
+@keyframes hover-main-text-prev-animation {
+
+    0% {
+        transform: rotateX(0deg);
+        text-shadow: 1px 1px .2em #ffffff, -1px -1px .2em #ffffff, 1px -1px .2em #ffffff, -1px 1px .2em #ffffff;
+    }
+
+    25% {
+        text-shadow: 1px 1px .2em #57f1ff44, -1px -1px .2em #57f1ff44, 1px -1px .2em #57f1ff44, -1px 1px .2em #57f1ff44;
+    }
+
+    50% {
+        text-shadow: 1px 1px .2em #57f1ff88, -1px -1px .2em #57f1ff88, 1px -1px .2em #57f1ff88, -1px 1px .2em #57f1ff88;
+    }
+
+    75% {
+        text-shadow: 1px 1px .2em #57f1ffcc, -1px -1px .2em #57f1ffcc, 1px -1px .2em #57f1ffcc, -1px 1px .2em #57f1ffcc;
+    }
+
+    100% {
+        transform: rotateX(90deg);
+        color: white;
+        text-shadow: 1px 1px .2em #57f1ff, -1px -1px .2em #57f1ff, 1px -1px .2em #57f1ff, -1px 1px .2em #57f1ff;
+    }
+}
+
+@keyframes hover-main-text-next-animation {
+    from {
+        transform: rotateX(0deg) scaleY(0);
+    }
+    to {
+        transform: rotateX(0deg) scaleY(1);
+    }
+}
+
+@keyframes hover-sub-text {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes not-hover-sub-text {
+    from {
+        transform: scaleY(1);
+    }
+    to {
+        transform: scaleY(0);
+    }
+}

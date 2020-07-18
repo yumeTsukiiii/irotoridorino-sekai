@@ -1,0 +1,51 @@
+.action:hover {
+    transform: scale(1.2);
+}
+
+.shown {
+    transform-origin: center;
+    animation-name: shown-animation;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+.hidden {
+    transform-origin: center;
+    animation-name: hidden-animation;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes shown-animation {
+    from {
+        transform: scaleX(0);
+        display: block;
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes hidden-animation {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(0);
+        display: none;
+    }
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    line-height: inherit;
+    width: max-content;
+}
+button:after {
+    border: none;
+}

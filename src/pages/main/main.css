@@ -1,0 +1,80 @@
+.logo {
+    opacity: 0;
+    transform: translateY(-50%);
+    animation-name: logo-animation;
+    animation-duration: 6s;
+    animation-fill-mode: forwards;
+    animation-delay: 2s;
+}
+
+.actions {
+    opacity: 0;
+    transform: translateY(50%);
+    animation-name: actions-animation;
+    animation-duration: 6s;
+    animation-fill-mode: forwards;
+    animation-delay: 2.5s;
+}
+
+.bg-container-transform {
+    transform-origin: center;
+    animation-name: bg-container-transform-animation;
+    animation-duration: 18s;
+    animation-fill-mode: forwards;
+}
+
+.bg-C-transform {
+    animation-name: bg-transform-animation;
+    animation-duration: 16s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.bg-D-transform {
+    animation-name: bg-transform-animation;
+    animation-duration: 12s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+@keyframes bg-transform-animation {
+    from  {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 0 calc(100vh);
+    }
+}
+
+@keyframes bg-container-transform-animation {
+    from  {
+        transform: scale(2) rotateZ(8deg);
+    }
+    to {
+        transform: scale(1) rotateZ(0);
+    }
+}
+
+@keyframes logo-animation {
+    from {
+        opacity: 0;
+        transform: translateY(-50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+@keyframes actions-animation {
+    from {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}

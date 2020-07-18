@@ -1,0 +1,391 @@
+.bg-1 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+}
+
+.bg-title-1 {
+    animation-name: bg-title-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+}
+
+.gallery-1 {
+    animation-name: gallery-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+.bg-2 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 1);
+}
+
+.bg-title-2 {
+    animation-name: bg-title-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 1);
+}
+
+.gallery-2 {
+    animation-name: gallery-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: calc(20s * 1);
+}
+
+.bg-3 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 2);
+}
+
+.bg-title-3 {
+    animation-name: bg-title-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 2);
+}
+
+.gallery-3 {
+    animation-name: gallery-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: calc(20s * 2);
+}
+
+.bg-4 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 3);
+}
+
+.bg-title-4 {
+    animation-name: bg-title-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 3);
+}
+
+.gallery-4 {
+    animation-name: gallery-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: calc(20s * 3);
+}
+
+.bg-5 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 4);
+}
+
+.bg-title-5 {
+    animation-name: bg-title-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 4);
+}
+
+.gallery-5 {
+    animation-name: gallery-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: calc(20s * 4);
+}
+
+.bg-6 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 5);
+}
+
+.bg-title-6 {
+    animation-name: bg-title-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 5);
+}
+
+.gallery-6 {
+    animation-name: gallery-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: calc(20s * 5);
+}
+
+.bg-7 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 6);
+}
+
+.bg-title-7 {
+    animation-name: bg-title-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 6);
+}
+
+.gallery-7 {
+    animation-name: gallery-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: calc(20s * 6);
+}
+
+.bg-8 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 7);
+}
+
+.bg-title-8 {
+    animation-name: bg-title-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 7);
+}
+
+.gallery-8 {
+    animation-name: gallery-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: calc(20s * 7);
+}
+
+.bg-9 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 8);
+}
+
+.bg-title-9 {
+    animation-name: bg-title-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 8);
+}
+
+.gallery-9 {
+    animation-name: gallery-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: calc(20s * 8);
+}
+
+.bg-10 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 9);
+}
+
+.bg-title-10 {
+    animation-name: bg-title-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 9);
+}
+
+.gallery-10 {
+    animation-name: gallery-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: calc(20s * 9);
+}
+
+.bg-11 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 10);
+}
+
+.bg-title-11 {
+    animation-name: bg-title-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 10);
+}
+
+.gallery-11 {
+    animation-name: gallery-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: calc(20s * 10);
+}
+
+.bg-12 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 11);
+}
+
+.bg-title-12 {
+    animation-name: bg-title-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 11);
+}
+
+.gallery-12 {
+    animation-name: gallery-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: calc(20s * 11);
+}
+
+.bg-13 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 12);
+}
+
+.bg-title-13 {
+    animation-name: bg-title-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 12);
+}
+
+.gallery-13 {
+    animation-name: gallery-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: calc(20s * 12);
+}
+
+.bg-14 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 13);
+}
+
+.bg-15 {
+    animation-name: bg-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 14 + 10s);
+}
+
+.bg-title-14 {
+    animation-name: bg-title-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 13);
+}
+
+.gallery-14 {
+    animation-name: gallery-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: calc(20s * 13);
+}
+
+.suki-text {
+    animation-name: last-text-animation;
+    animation-duration: 40s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 14);
+}
+
+.danjobi-text {
+    animation-name: last-text-animation;
+    animation-duration: 35s;
+    animation-fill-mode: forwards;
+    animation-delay: calc(20s * 15 + 5s);
+}
+
+@keyframes bg-animation {
+    0% {
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes bg-title-animation {
+    0% {
+        opacity: 0;
+        transform: translateY(-150%);
+    }
+    50% {
+        transform: translateY(0%);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-150%);
+    }
+}
+
+@keyframes gallery-animation {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotateZ(-45deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1) rotateZ(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5) rotateZ(0deg);
+    }
+}
+
+@keyframes last-text-animation {
+    0% {
+        opacity: 0;
+        transform: translateY(-150%);
+    }
+    60% {
+        transform: translateY(500%);
+    }
+    75% {
+        opacity: 1;
+        transform: translateY(500%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-150%);
+    }
+}
