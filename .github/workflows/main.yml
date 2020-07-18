@@ -48,7 +48,7 @@ jobs:
         script: |
           cd ~/shinku
           rm -rf build
-          exit
+          
     - name: upload build dir
       uses: appleboy/scp-action@master
       with:
