@@ -79,6 +79,7 @@ const WorldEndLove: React.FC<WorldEndLoveProps> = (props: WorldEndLoveProps) => 
             ctx.playBgm('world_end_love_bgm', false, (ev => {
                 const audio = ev.target as HTMLAudioElement;
                 const progressImg = document.getElementById('progress-img') as HTMLImageElement;
+                if (!progressImg) return;
                 const radio = (audio.currentTime / audio.duration);
                 progressImg.style.transform = `translateX(${radio * (window.innerWidth - 96)}px)`;
             })).then(() => {
@@ -97,7 +98,7 @@ const WorldEndLove: React.FC<WorldEndLoveProps> = (props: WorldEndLoveProps) => 
         <div style={styles.root}>
             {
                 gameAssetsResult.map((item, index) => (
-                    <>
+                    <React.Fragment key={`world-fragment-${index + 1}`}>
                         <div style={styles.bgContainer}>
                             <div style={styles.bg} className={`bg-${index + 1}`}>
                                 <Background src={item.bg.src}/>
@@ -120,7 +121,7 @@ const WorldEndLove: React.FC<WorldEndLoveProps> = (props: WorldEndLoveProps) => 
                                     src={item.title.src}/>
                             </Center>
                         }
-                    </>
+                    </React.Fragment>
                 ))
             }
             <div style={styles.bgContainer}>
