@@ -1,4 +1,4 @@
-import React, {CSSProperties, MouseEvent, MouseEventHandler, useEffect, useState} from 'react';
+import React, {CSSProperties, MouseEventHandler, useEffect, useState} from 'react';
 import MenuBg from '../../assets/img/menu_bg.png';
 import './tip_menu.css';
 

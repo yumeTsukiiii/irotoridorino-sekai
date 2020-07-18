@@ -55,7 +55,7 @@ const Entry: React.FC<EntryProps> = () => {
     };
 
     const ctx = useContext(appContext);
-    const [currentStep, setCurrentStep] = useState(0);
+    const [currentStep] = useState(0);
     const [showTipMenu, setShowTipMenu] = useState(false);
 
     return (

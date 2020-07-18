@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import EyecatchTitleBG01 from '../assets/img/eyecatch_title_BG_01.png';
 import EyecatchTitleBG02 from '../assets/img/eyecatch_title_BG_02.png';
 import EyecatchTitleBG03 from '../assets/img/eyecatch_title_BG_03.png';

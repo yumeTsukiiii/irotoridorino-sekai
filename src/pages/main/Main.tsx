@@ -108,7 +108,7 @@ const Main: React.FC<MainProps> = (props: MainProps) => {
         return () => {
             ctx.stopBgm('main_bgm');
         };
-    }, []);
+    }, [ctx, history]);
 
     return (
         <div style={styles.root}>

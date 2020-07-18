@@ -50,7 +50,7 @@ const AnimationButton: React.FC<AnimationButtonProps> = (props: AnimationButtonP
         if (hover) {
             props.onHover && props.onHover();
         }
-    }, [hover]);
+    }, [hover, props]);
 
     return (
         <div
