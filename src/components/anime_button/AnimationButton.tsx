@@ -32,7 +32,8 @@ const AnimationButton: React.FC<AnimationButtonProps> = (props: AnimationButtonP
         root: {
             display: "flex",
             flexDirection: "column",
-            alignItems: "flex-end"
+            alignItems: "flex-end",
+            cursor: 'pointer'
         } as CSSProperties,
         mainText: {
             fontWeight: props.fontWeight,
