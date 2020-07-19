@@ -3324,11 +3324,6 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-createjs-module@^0.8.3:
-  version "0.8.3"
-  resolved "https://registry.npm.taobao.org/createjs-module/download/createjs-module-0.8.3.tgz#328ffa2e14741d7303d3d08bd97ce1823365741f"
-  integrity sha1-Mo/6LhR0HXMD09CL2XzhgjNldB8=
-
 cross-spawn@7.0.1:
   version "7.0.1"
   resolved "https://registry.npm.taobao.org/cross-spawn/download/cross-spawn-7.0.1.tgz#0ab56286e0f7c24e153d04cc2aa027e43a9a5d14"
