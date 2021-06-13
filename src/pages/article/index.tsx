@@ -5,6 +5,7 @@ import SekaiCardButton from "../../components/sekai_card_button";
 import SekaiCardData from "../../components/sekai_card_data";
 import SekaiPagination from "../../components/sekai_pagination";
 import {appContext} from "../../context/AppContextWrapper";
+import {useHistory} from "react-router";
 
 const BorderContainer: React.FC<{style?: CSSProperties}> = (props) => {
     return (
@@ -19,17 +20,23 @@ const BorderContainer: React.FC<{style?: CSSProperties}> = (props) => {
 const Article: React.FC = () => {
 
     const ctx = useContext(appContext);
+    const history = useHistory();
 
     const [currentPage, setCurrentPage] = useState(0);
 
-    const handleCurrentPageChange = useCallback((value) => {
+    const handleCurrentPageChange = useCallback(async (value) => {
         setCurrentPage(value);
-        ctx.playBgm('sekai_card_box_click', true);
+        await ctx.playBgm('sekai_card_box_click', true);
     }, [ctx]);
 
-    const handleDataItemClick = useCallback(() => {
-        ctx.playBgm('sekai_card_box_no_data_click', true);
+    const handleDataItemClick = useCallback(async () => {
+        await ctx.playBgm('sekai_card_box_no_data_click', true);
     }, [ctx]);
+
+    const handleExitBtnClick = useCallback(async () => {
+        history.goBack();
+        await ctx.playBgm('sekai_card_box_click', true);
+    }, [ctx, history]);
 
     return (
         <div style={{
@@ -86,6 +93,7 @@ const Article: React.FC = () => {
                         marginLeft: 32
                     }}
                     textStyle={{fontSize: 12}}
+                    onClick={handleExitBtnClick}
                 >EXIT</SekaiCardButton>
             </div>
             <SekaiCardBox

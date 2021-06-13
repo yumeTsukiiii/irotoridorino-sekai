@@ -381,7 +381,7 @@ const AppContextWrapper: React.FC = (props) => {
 
     const getBgAssetsResult = useCallback(() => bgAssetsResult && {...bgAssetsResult}, [bgAssetsResult]);
 
-    const playBgm = useCallback((id: string, replay: boolean = false, onPlaying?: (ev: Event) => void) => {
+    const playBgm = useCallback(async (id: string, replay: boolean = false, onPlaying?: (ev: Event) => void) => {
         const bgm = bgms.find(bgm => bgm.id === id);
         if (bgm) {
             const audio = document.getElementById(bgm.id) as HTMLAudioElement;
@@ -389,7 +389,7 @@ const AppContextWrapper: React.FC = (props) => {
                 audio.load();
             }
             audio.ontimeupdate = onPlaying || null;
-            audio.play();
+            await audio.play();
             return new Promise<void>((resolve) => {
                 audio.onended = () => {
                     audio.onended = null;

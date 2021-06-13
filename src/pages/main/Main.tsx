@@ -85,12 +85,6 @@ const Main: React.FC<MainProps> = () => {
         } as CSSProperties
     };
 
-    const delayPush = (path: string, delay: number = 1000) => {
-        setTimeout(() => {
-            history.push(path);
-        }, delay)
-    }
-
     const handleWorldEndLoveClick = () => {
         ctx.playBgm('start');
         ctx.showWhiteBg().then(() => {
@@ -102,7 +96,7 @@ const Main: React.FC<MainProps> = () => {
 
     const handleArticleBtnClick = () => {
         ctx.playBgm('animation_btn_click');
-        delayPush('/article');
+        history.push('/article');
     };
 
     const handleBtnHover = () => {
