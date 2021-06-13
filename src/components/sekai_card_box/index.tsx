@@ -1,4 +1,4 @@
-import React, {CSSProperties, useCallback, useEffect, useMemo, useRef} from "react";
+import React, {CSSProperties, useCallback, useMemo, useRef} from "react";
 
 type SekaiCardBoxProps = {
     width?: string|number,
@@ -94,18 +94,6 @@ const SekaiCardBox: React.FC<SekaiCardBoxProps> = (props) => {
         props.onBlur?.call(null);
     }, [props.contentBackgroundColor, props.onBlur, props.clearHoverStyle]);
 
-    // 添加hover和blur的监听函数
-    useEffect(() => {
-        if (!rootRef.current) return;
-        if (props.canHover) {
-            rootRef.current.onmouseover = handleRootHover;
-            rootRef.current.onmouseout = handleRootBlur;
-        } else {
-            rootRef.current.onmouseover = null;
-            rootRef.current.onmouseout = null;
-        }
-    }, [props.canHover, handleRootHover, handleRootBlur]);
-
     return (
         <div ref={rootRef} style={{
             width: props.width,
@@ -113,7 +101,9 @@ const SekaiCardBox: React.FC<SekaiCardBoxProps> = (props) => {
             backgroundColor: props.contentBackgroundColor,
             position: "relative",
             ...props.style
-        }} onClick={props.onClick}>
+        }} onClick={props.onClick}
+            onMouseOver={props.canHover ? handleRootHover : undefined}
+            onMouseOut={props.canHover ? handleRootBlur: undefined}>
             <HorizontalLine top={0} color={props.borderStartColor} />
             <HorizontalLine bottom={0} color={props.borderEndColor}/>
             <VerticalLine left={0}/>
