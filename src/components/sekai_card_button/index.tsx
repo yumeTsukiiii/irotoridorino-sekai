@@ -1,4 +1,4 @@
-import React, {CSSProperties, useCallback, useState} from "react";
+import React, {CSSProperties, useCallback, useEffect, useState} from "react";
 import SekaiCardBox from "../sekai_card_box";
 
 type SekaiCardButtonProps = {
@@ -7,11 +7,14 @@ type SekaiCardButtonProps = {
     onHover?: () => any,
     onBlur?: () => any,
     onClick?: () => any,
+    hover?: boolean
 } & Partial<Readonly<typeof defaultProps>>;
 
 const defaultProps = {
     width: '100%' as CSSProperties['width'],
-    height: 32 as CSSProperties['height']
+    height: 32 as CSSProperties['height'],
+    tbLineHeight: 2 as string|number,
+    lrLineWidth: 6 as string|number,
 };
 
 const SekaiCardButton: React.FC<SekaiCardButtonProps> = (props) => {
@@ -22,17 +25,27 @@ const SekaiCardButton: React.FC<SekaiCardButtonProps> = (props) => {
      * hover时修改透明度
      */
     const handleRootHover = useCallback(async () => {
-        setCurrentOpacity(1.0);
+        if (props.hover === undefined) {
+            setCurrentOpacity(1.0);
+        }
         props.onHover?.call(null);
-    }, []);
+    }, [props.hover, props.onHover]);
 
     /**
      * blur时修改透明度
      */
     const handleRootBlur = useCallback(() => {
-        setCurrentOpacity(0.6);
+        if (props.hover === undefined) {
+            setCurrentOpacity(0.6);
+        }
         props.onBlur?.call(null);
-    }, []);
+    }, [props.hover, props.onBlur]);
+
+    useEffect(() => {
+        if (props.hover === undefined) {
+            setCurrentOpacity(0.6);
+        }
+    }, [props.hover]);
 
     return (
         <SekaiCardBox
@@ -44,16 +57,18 @@ const SekaiCardButton: React.FC<SekaiCardButtonProps> = (props) => {
                 justifyContent: "center"
             }}
             style={{
-                opacity: currentOpacity,
+                opacity: props.hover === undefined ? currentOpacity : props.hover ? 1.0 : 0.6 ,
                 ...props.style
             }}
             onHover={handleRootHover}
             onBlur={handleRootBlur}
             onClick={props.onClick}
-            clearHoverStyle={true}>
+            clearHoverStyle={true}
+            tbLineHeight={props.tbLineHeight}
+            lrLineWidth={props.lrLineWidth}>
             <span style={{
                 color: "white",
-                fontSize: 14,
+                fontSize: '1vw',
                 fontWeight: 600,
                 ...props.textStyle
             }}>{props.children}</span>

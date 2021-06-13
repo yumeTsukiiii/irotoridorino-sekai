@@ -8,7 +8,7 @@ type AnimationButtonProps = {
 
 const defaultProps = {
     fontWeight: 400 as number,
-    fontSize: '2.5em' as string,
+    fontSize: '2.5vw' as string,
     subFontWeight: 400 as number,
     subFontSize: '1em' as string,
     subTextLetterSpacing: '16px' as string,

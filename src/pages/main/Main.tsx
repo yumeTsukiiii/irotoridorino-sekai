@@ -17,7 +17,7 @@ const defaultProps = {
 
 };
 
-const Main: React.FC<MainProps> = (props: MainProps) => {
+const Main: React.FC<MainProps> = () => {
 
     const history = useHistory();
 
@@ -81,16 +81,28 @@ const Main: React.FC<MainProps> = (props: MainProps) => {
         actionsContainer: {
             position: "absolute",
             right: '8%',
-            bottom: '40%'
+            top: '27vw'
         } as CSSProperties
     };
+
+    const delayPush = (path: string, delay: number = 1000) => {
+        setTimeout(() => {
+            history.push(path);
+        }, delay)
+    }
 
     const handleWorldEndLoveClick = () => {
         ctx.playBgm('start');
         ctx.showWhiteBg().then(() => {
             ctx.hideWhiteBg();
+            ctx.stopBgm('main_bgm')
             history.push('/world_end_love');
         });
+    };
+
+    const handleArticleBtnClick = () => {
+        ctx.playBgm('animation_btn_click');
+        delayPush('/article');
     };
 
     const handleBtnHover = () => {
@@ -105,9 +117,6 @@ const Main: React.FC<MainProps> = (props: MainProps) => {
             return;
         }
         ctx.playBgm('main_bgm');
-        return () => {
-            ctx.stopBgm('main_bgm');
-        };
     }, [ctx, history]);
 
     return (
@@ -128,6 +137,13 @@ const Main: React.FC<MainProps> = (props: MainProps) => {
                     mainText={'World\'s end love'}
                     subTextLetterSpacing={'24px'}
                     subText={'アレセイア'}
+                    onHover={handleBtnHover}/>
+                <div style={{height: '2vh'}}/>
+                <AnimationButton
+                    onClick={handleArticleBtnClick}
+                    mainText={'Article'}
+                    subTextLetterSpacing={'24px'}
+                    subText={'文章'}
                     onHover={handleBtnHover}/>
             </div>
         </div>

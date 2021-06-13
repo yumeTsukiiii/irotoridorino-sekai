@@ -47,6 +47,8 @@ import TitleBg1D from '../assets/img/title_bg1_D.png';
 import TitleLogo from '../assets/img/title_logo1.png';
 import ShinkuDanjobi from '../assets/img/shinku_danjobi.png';
 import Progress from '../assets/img/progress.png';
+import LoadDataBackground from '../assets/img/load_data_background.png';
+import LoadDataBoxBackground from '../assets/img/load_data_box_background.png';
 import LoadingBg from "../components/loading_bg/LoadingBg";
 
 import './app_context_wrapper.css';
@@ -63,6 +65,8 @@ type BgAssets = {
     titleBgC: string,
     titleBgD: string,
     titleLogo: string,
+    loadDataBackground: string,
+    loadDataBoxBackground: string,
     progress: string
 }
 
@@ -82,6 +86,8 @@ export type BgAssetsResult = {
     titleBgC: HTMLImageElement,
     titleBgD: HTMLImageElement,
     titleLogo: HTMLImageElement,
+    loadDataBackground: HTMLImageElement,
+    loadDataBoxBackground: HTMLImageElement,
     progress: HTMLImageElement
 }
 
@@ -100,9 +106,9 @@ type AppContext = {
 
 
 export const appContext = React.createContext<AppContext>({
-    preloadGameAssets: (onLoad?: (eventObj: Object) => void, hideLoading?: boolean) => new Promise<Object>(() => {}),
-    preloadBgAssets: (onLoad?: (eventObj: Object) => void, hideLoading?: boolean) => new Promise<Object>(() => {}),
-    preloadBgm: (onLoad?: (eventObj: Object) => void, hideLoading?: boolean) => new Promise<Object>(() => {}),
+    preloadGameAssets: () => new Promise<Object>(() => {}),
+    preloadBgAssets: () => new Promise<Object>(() => {}),
+    preloadBgm: () => new Promise<Object>(() => {}),
     getGameAssetsResult: () => undefined,
     getBgAssetsResult: () => undefined,
     playBgm: () => Promise.resolve(),
@@ -196,6 +202,8 @@ const bgAssets: BgAssets = {
     titleBgC: TitleBg1C,
     titleBgD: TitleBg1D,
     titleLogo: TitleLogo,
+    loadDataBackground: LoadDataBackground,
+    loadDataBoxBackground: LoadDataBoxBackground,
     progress: Progress
 };
 
@@ -218,6 +226,21 @@ const bgms = [
     {
         id: 'hover',
         src: `${process.env.PUBLIC_URL}/hover.wav`,
+        loop: false
+    },
+    {
+        id: 'animation_btn_click',
+        src: `${process.env.PUBLIC_URL}/sekai_btn_click.wav`,
+        loop: false
+    },
+    {
+        id: 'sekai_card_box_click',
+        src: `${process.env.PUBLIC_URL}/sekai_card_box_click.wav`,
+        loop: false
+    },
+    {
+        id: 'sekai_card_box_no_data_click',
+        src: `${process.env.PUBLIC_URL}/sekai_card_box_no_data_click.wav`,
         loop: false
     }
 ];
@@ -247,7 +270,7 @@ const AppContextWrapper: React.FC = (props) => {
             return Promise.resolve<Object>({});
         }
 
-        return new Promise<Object>((resolve, reject) => {
+        return new Promise<Object>((resolve) => {
             const newGameAssetsResult = gameAssets.map((gameAssetItem) => {
                 const totalCount = gameAssets.length * Object.keys(gameAssetItem).length;
 
@@ -288,7 +311,7 @@ const AppContextWrapper: React.FC = (props) => {
             return Promise.resolve<Object>({});
         }
 
-        return new Promise<Object>((resolve, reject) => {
+        return new Promise<Object>((resolve) => {
             const onloadend = () => {
                 completeCount++;
                 setSubLoadText(`(${completeCount}/${totalCount})`);
@@ -328,7 +351,7 @@ const AppContextWrapper: React.FC = (props) => {
             return Promise.resolve<Object>({});
         }
 
-        return new Promise<Object>((resolve, reject) => {
+        return new Promise<Object>((resolve) => {
             bgms.forEach((bgm) => {
                 const audio = document.getElementById(bgm.id) as HTMLAudioElement | null;
                 if (audio) {
@@ -367,7 +390,7 @@ const AppContextWrapper: React.FC = (props) => {
             }
             audio.ontimeupdate = onPlaying || null;
             audio.play();
-            return new Promise<void>((resolve, reject) => {
+            return new Promise<void>((resolve) => {
                 audio.onended = () => {
                     audio.onended = null;
                     audio.ontimeupdate = null;
@@ -403,7 +426,7 @@ const AppContextWrapper: React.FC = (props) => {
         setShowWhite(true);
         const whiteDiv = document.getElementById('white-div') as HTMLDivElement;
         whiteDiv.className = 'show-white-bg';
-        return new Promise<void>((resolve, reject) => {
+        return new Promise<void>((resolve) => {
             setTimeout(() => {
                 resolve()
             }, 2000);
@@ -413,7 +436,7 @@ const AppContextWrapper: React.FC = (props) => {
     const hideWhiteBg = useCallback(() => {
         const whiteDiv = document.getElementById('white-div') as HTMLDivElement
         whiteDiv.className = 'hide-white-bg';
-        return new Promise<void>((resolve, reject) => {
+        return new Promise<void>((resolve) => {
             setTimeout(() => {
                 resolve();
                 setShowWhite(false);

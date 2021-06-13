@@ -60,7 +60,17 @@ const Entry: React.FC<EntryProps> = () => {
 
     return (
         <div style={styles.root} onClick={steps[currentStep].onClick}>
-            <img className={'shinku'} alt={'shinku'} src={Shinku1} width={'90%'}/>
+            <div style={{
+                position: "absolute",
+                top: '20%',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                backgroundImage: `url(${Shinku1})`,
+                backgroundPosition: "bottom",
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat"
+            }}/>
             <MainWindow name={'真红'} text={steps[currentStep].text}/>
             <div style={styles.tipMenu}>
                 <TipMenu

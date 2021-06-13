@@ -31,7 +31,7 @@ const TipMenu: React.FC<TipMenuProps> = (props: TipMenuProps) => {
             left: '50%',
             transform: 'translate(-50%, 0%)',
             color: "white",
-            fontSize: '2em',
+            fontSize: '1.8em',
             maxWidth: '70%',
             textShadow: '1px 1px .1em #7ef5f7, -1px -1px .1em #7ef5f7, 1px -1px .1em #7ef5f7, -1px 1px .1em #7ef5f7'
         } as CSSProperties,
@@ -40,7 +40,7 @@ const TipMenu: React.FC<TipMenuProps> = (props: TipMenuProps) => {
             bottom: '35%',
             left: '30%',
             color: "white",
-            fontSize: '2em',
+            fontSize: '1.8em',
             textShadow: '1px 1px .1em #7ef5f7, -1px -1px .1em #7ef5f7, 1px -1px .1em #7ef5f7, -1px 1px .1em #7ef5f7'
         } as CSSProperties,
         noText: {
@@ -48,7 +48,7 @@ const TipMenu: React.FC<TipMenuProps> = (props: TipMenuProps) => {
             bottom: '35%',
             right: '30%',
             color: "white",
-            fontSize: '2em',
+            fontSize: '1.8em',
             textShadow: '1px 1px .1em #7ef5f7, -1px -1px .1em #7ef5f7, 1px -1px .1em #7ef5f7, -1px 1px .1em #7ef5f7'
         } as CSSProperties,
         bottomText: {

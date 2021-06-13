@@ -43,7 +43,7 @@ const SekaiCardData: React.FC<SekaiCardDataProps> = (props) => {
                 marginBottom: 2,
                 overflow: "hidden",
                 textOverflow: "ellipsis",
-                fontSize: 14,
+                fontSize: '1vw',
                 fontWeight: 600,
                 ...props.headerStyle
             }}>
