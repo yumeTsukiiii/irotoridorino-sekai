@@ -1,4 +1,4 @@
-import React, {CSSProperties, useCallback, useContext, useState} from "react";
+import React, {CSSProperties, useCallback, useContext, useEffect, useState} from "react";
 import LoadDataBackgroundImg from '../../assets/img/load_data_background.png'
 import SekaiCardBox from "../../components/sekai_card_box";
 import SekaiCardButton from "../../components/sekai_card_button";
@@ -6,6 +6,16 @@ import SekaiCardData from "../../components/sekai_card_data";
 import SekaiPagination from "../../components/sekai_pagination";
 import {appContext} from "../../context/AppContextWrapper";
 import {useHistory} from "react-router";
+
+interface ArticleData {
+    id: number
+    title: string
+    createTime: number
+    updateTime: number
+    description: string
+    link: string
+    imgSrc: string|null
+}
 
 const BorderContainer: React.FC<{style?: CSSProperties}> = (props) => {
     return (
@@ -23,6 +33,9 @@ const Article: React.FC = () => {
     const history = useHistory();
 
     const [currentPage, setCurrentPage] = useState(0);
+    const pageSize = 12;
+    const [articles, setArticles] = useState<ArticleData[]>([]);
+    const [currentArticleIndex, setCurrentArticleIndex] = useState<number|null>(null);
 
     const handleCurrentPageChange = useCallback(async (value) => {
         setCurrentPage(value);
@@ -33,10 +46,41 @@ const Article: React.FC = () => {
         await ctx.playBgm('sekai_card_box_no_data_click', true);
     }, [ctx]);
 
+    const handleDataItemHover = useCallback((itemIndex: number) => {
+        if (itemIndex >= articles.length) {
+            setCurrentArticleIndex(null);
+            return;
+        }
+        setCurrentArticleIndex(itemIndex);
+    }, [articles]);
+
+    const handleDataItemBlur = useCallback(() => {
+        setCurrentArticleIndex(null);
+    }, []);
+
     const handleExitBtnClick = useCallback(async () => {
         history.goBack();
         await ctx.playBgm('sekai_card_box_click', true);
     }, [ctx, history]);
+
+    const requestArticles = useCallback(async () => {
+        setArticles(Array(4).fill(0).map((_, index) => (
+            {
+                id: index,
+                title: `测试文章_${index + 1}`,
+                createTime: new Date().getTime(),
+                updateTime: new Date().getTime(),
+                description: '这只是一个测试文章emm',
+                link: 'https://...',
+                imgSrc: null
+            }
+        )));
+    }, []);
+
+    useEffect(() => {
+        // noinspection JSIgnoredPromiseFromCall
+        requestArticles();
+    }, [requestArticles, currentPage]);
 
     return (
         <div style={{
@@ -119,7 +163,12 @@ const Article: React.FC = () => {
                         flexWrap: "wrap"
                     }}>
                         {
-                            Array(12).fill(0).map((_, index) => (
+                            [
+                                ...articles,
+                                ...articles.length === pageSize ? [] : Array(
+                                    pageSize - articles.length
+                                ).fill(0).map<Partial<ArticleData>>(() => ({}))
+                            ].map((data, index) => (
                                 <SekaiCardData
                                     dataIndex={index + 1}
                                     width={'23.75%'}
@@ -128,7 +177,11 @@ const Article: React.FC = () => {
                                         marginTop: '1%',
                                         marginBottom: '1%'
                                     }}
-                                    onClick={handleDataItemClick}/>
+                                    onClick={handleDataItemClick}
+                                    src={data.imgSrc ?? undefined}
+                                    date={data.createTime ? new Date(data.createTime) : undefined}
+                                    onHover={() => handleDataItemHover(index)}
+                                    onBlur={handleDataItemBlur}/>
                             ))
                         }
                     </BorderContainer>
@@ -188,7 +241,7 @@ const Article: React.FC = () => {
                     color: "white",
                     letterSpacing: 2
                 }}>
-                    「你没事吧」
+                    {currentArticleIndex !== null ? articles[currentArticleIndex].title : null}
                 </BorderContainer>
             </SekaiCardBox>
         </div>

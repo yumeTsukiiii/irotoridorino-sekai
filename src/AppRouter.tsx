@@ -9,7 +9,8 @@ const AppRouter: React.FC = () => {
     return (
         <HashRouter>
             <Route exact path={"/"}>
-                <Entry/>
+                {/*<Entry/>*/}
+                <Article/>
             </Route>
             <Route path={'/main'}>
                 <Main/>

@@ -1,4 +1,4 @@
-import React, {CSSProperties, MouseEventHandler, useEffect, useState} from 'react';
+import React, {CSSProperties, MouseEventHandler, useCallback, useState} from 'react';
 import './animation_button.css';
 
 type AnimationButtonProps = {
@@ -20,13 +20,15 @@ const AnimationButton: React.FC<AnimationButtonProps> = (props: AnimationButtonP
 
     const [hover, setHover] = useState<boolean | null>(null);
 
-    const onBtnHover = () => {
+    const onBtnHover = useCallback(() => {
+        console.log('233')
+        props.onHover?.call(null);
         setHover(true);
-    };
+    }, [props.onHover]);
 
-    const onBtnNotHover = () => {
+    const onBtnNotHover = useCallback(() => {
         setHover(false);
-    };
+    }, []);
 
     const styles = {
         root: {
@@ -47,14 +49,9 @@ const AnimationButton: React.FC<AnimationButtonProps> = (props: AnimationButtonP
         } as CSSProperties
     };
 
-    useEffect(() => {
-        if (hover) {
-            props.onHover && props.onHover();
-        }
-    }, [hover, props]);
-
     return (
         <div
+            /** 这个地方不能用over和out，因为，下面的翻转动画会导致多次触发over和out */
             style={styles.root}
             onMouseEnter={onBtnHover}
             onMouseLeave={onBtnNotHover}

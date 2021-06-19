@@ -49,6 +49,7 @@ import ShinkuDanjobi from '../assets/img/shinku_danjobi.png';
 import Progress from '../assets/img/progress.png';
 import LoadDataBackground from '../assets/img/load_data_background.png';
 import LoadDataBoxBackground from '../assets/img/load_data_box_background.png';
+import ArticleBg from '../assets/img/article_bg.png';
 import LoadingBg from "../components/loading_bg/LoadingBg";
 
 import './app_context_wrapper.css';
@@ -67,7 +68,8 @@ type BgAssets = {
     titleLogo: string,
     loadDataBackground: string,
     loadDataBoxBackground: string,
-    progress: string
+    progress: string,
+    articleBg: string
 }
 
 type GameAssets = Array<GameAssetItem>
@@ -88,7 +90,8 @@ export type BgAssetsResult = {
     titleLogo: HTMLImageElement,
     loadDataBackground: HTMLImageElement,
     loadDataBoxBackground: HTMLImageElement,
-    progress: HTMLImageElement
+    progress: HTMLImageElement,
+    articleBg: HTMLImageElement
 }
 
 type AppContext = {
@@ -204,7 +207,8 @@ const bgAssets: BgAssets = {
     titleLogo: TitleLogo,
     loadDataBackground: LoadDataBackground,
     loadDataBoxBackground: LoadDataBoxBackground,
-    progress: Progress
+    progress: Progress,
+    articleBg: ArticleBg
 };
 
 const bgms = [
