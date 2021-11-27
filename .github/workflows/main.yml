@@ -49,7 +49,7 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           cd ~/websites
-          rm -rf build
+          rm -rf blog.yumetsuki.fan
 
     - name: upload build dir
       uses: appleboy/scp-action@master
