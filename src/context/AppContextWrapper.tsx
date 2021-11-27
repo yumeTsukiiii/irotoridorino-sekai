@@ -265,7 +265,7 @@ const AppContextWrapper: React.FC = (props) => {
 
     const [gameAssetsResult, setGameAssetsResult] = useState<GameAssetsResult>([]);
     const [bgAssetsResult, setBgAssetsResult] = useState<BgAssetsResult | undefined>(undefined);
-    const [isLoadAssets, setLoadAssets] = useState(false);
+    const [isLoad, setLoad] = useState(false);
     const [loadText, setLoadText] = useState('');
     const [subLoadText, setSubLoadText] = useState('');
     const [isShowWhite, setShowWhite] = useState(false);
@@ -273,13 +273,13 @@ const AppContextWrapper: React.FC = (props) => {
     const preloadGameAssets = useCallback((onLoad?: (eventObj: Object) => void, hideLoading: boolean = false) => {
 
         let completeCount = 0;
-        setLoadAssets(true);
+        setLoad(true);
         setLoadText('加载资源图片中...')
         setSubLoadText(`(...)`);
 
         if (gameAssetsResult.length !== 0) {
             if (hideLoading) {
-                setLoadAssets(false);
+                setLoad(false);
             } else {
                 setLoadText('加载资源图片完成啦～')
             }
@@ -298,7 +298,7 @@ const AppContextWrapper: React.FC = (props) => {
                     }
                     if (completeCount === totalCount) {
                         if (hideLoading) {
-                            setLoadAssets(false);
+                            setLoad(false);
                         } else {
                             setLoadText('加载资源图片完成啦～')
                         }
@@ -315,12 +315,12 @@ const AppContextWrapper: React.FC = (props) => {
     const preloadBgAssets = useCallback((onLoad?: (eventObj: Object) => void, hideLoading: boolean = false) => {
         let completeCount = 0;
         let totalCount = Object.entries(bgAssets).length;
-        setLoadAssets(true);
+        setLoad(true);
         setLoadText('加载背景图片中...')
         setSubLoadText(`(...)`);
         if (bgAssetsResult) {
             if (hideLoading) {
-                setLoadAssets(false);
+                setLoad(false);
             } else {
                 setLoadText('加载背景图片完成啦～')
             }
@@ -336,7 +336,7 @@ const AppContextWrapper: React.FC = (props) => {
                 }
                 if (completeCount === totalCount) {
                     if (hideLoading) {
-                        setLoadAssets(false);
+                        setLoad(false);
                     } else {
                         setLoadText('加载背景图片完成啦～')
                     }
@@ -351,7 +351,7 @@ const AppContextWrapper: React.FC = (props) => {
     const preloadBgm = useCallback((onLoad?: (eventObj: Object) => void, hideLoading: boolean = false) => {
 
         let completeCount = 0;
-        setLoadAssets(true);
+        setLoad(true);
         setLoadText('加载音频中...');
         setSubLoadText(`(...)`);
 
@@ -360,7 +360,7 @@ const AppContextWrapper: React.FC = (props) => {
         ).every(audio => audio.readyState === 4)
         ) {
             if (hideLoading) {
-                setLoadAssets(false);
+                setLoad(false);
             } else {
                 setLoadText('加载音频完成啦～')
             }
@@ -380,7 +380,7 @@ const AppContextWrapper: React.FC = (props) => {
                         }
                         if (completeCount === bgms.length) {
                             if (hideLoading) {
-                                setLoadAssets(false);
+                                setLoad(false);
                             } else {
                                 setLoadText('加载音频完成啦～')
                             }
@@ -461,7 +461,7 @@ const AppContextWrapper: React.FC = (props) => {
 
     }, [])
 
-    const hideLoadingAssets = useCallback(() => setLoadAssets(false), []);
+    const hideLoadingAssets = useCallback(() => setLoad(false), []);
 
     const mapEntryToImageObjects = (obj: Object, onloadend: () => void) => {
         return Object.entries(obj).map(entry => {
@@ -505,7 +505,7 @@ const AppContextWrapper: React.FC = (props) => {
                 zIndex: 99999,
                 backgroundColor: "white"
             }}/>
-            <LoadingBg show={isLoadAssets} loadingText={loadText} subLoadingText={subLoadText}/>
+            <LoadingBg show={isLoad} loadingText={loadText} subLoadingText={subLoadText}/>
             {
                 bgms.map(bgm => (<audio
                     key={`audio-${bgm.id}`}

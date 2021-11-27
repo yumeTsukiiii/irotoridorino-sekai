@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import LoadingImage from '../../assets/img/loading.jpg';
 import './loading_bg.css';
 
@@ -8,7 +8,8 @@ type LoadingBgProps = {
 
 const defaultProps = {
     loadingText: 'Loading' as string,
-    subLoadingText: '' as string
+    subLoadingText: '' as string,
+    backgroundColor: 'black' as CSSProperties['backgroundColor']
 }
 
 const LoadingBg: React.FC<LoadingBgProps> = (props) => {
@@ -21,7 +22,7 @@ const LoadingBg: React.FC<LoadingBgProps> = (props) => {
                         top: 0,
                         width: '100vw',
                         height: '100vh',
-                        backgroundColor: 'black',
+                        backgroundColor: props.backgroundColor,
                         zIndex: 9999,
                         display: "flex",
                         flexDirection: "column",

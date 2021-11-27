@@ -1,5 +1,5 @@
 import EventEmitter from "events";
-import React, { useEffect } from "react";;
+import React, { useEffect } from "react";
 import { useMDSnackTip } from "../md_snack_tip";
 
 const eventBus = new EventEmitter();

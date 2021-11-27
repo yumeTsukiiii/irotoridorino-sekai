@@ -10,6 +10,8 @@ import {appContext} from "../../context/AppContextWrapper";
 import {useNavigate} from "react-router";
 import classes from './index.module.css';
 import FadeDialog from "../../components/fade_dialog";
+import { getArticlePaged } from "../../api/article";
+import LoadingBg from "../../components/loading_bg/LoadingBg";
 
 interface ArticleData {
     id: number
@@ -17,7 +19,6 @@ interface ArticleData {
     createTime: number
     updateTime: number
     description: string
-    link: string
     imgSrc: string|null
 }
 
@@ -52,6 +53,8 @@ const Article: React.FC<ArticleProps> = (props) => {
     const [articles, setArticles] = useState<ArticleData[]>([]);
     const [currentArticleIndex, setCurrentArticleIndex] = useState<number|null>(null);
     const [isOpened, setOpened] = useState(false);
+
+    const [isLoadArticle, setLoadArticle] = useState(false);
 
     const handleCurrentPageChange = useCallback(async (value) => {
         setCurrentPage(value);
@@ -91,17 +94,20 @@ const Article: React.FC<ArticleProps> = (props) => {
     }, [ctx, props.onExitClick]);
 
     const requestArticles = useCallback(async () => {
-        setArticles(Array(4).fill(0).map((_, index) => (
-            {
-                id: index,
-                title: `测试文章_${index + 1}`,
-                createTime: new Date().getTime(),
-                updateTime: new Date().getTime(),
-                description: '这只是一个测试文章emm',
-                link: 'https://...',
-                imgSrc: null
-            }
-        )));
+        setLoadArticle(true);
+        const resp = await getArticlePaged(currentPage, pageSize);
+        if (!resp) return;
+        setArticles(
+            resp.data.map(article => ({
+                id: article.id,
+                title: article.title,
+                createTime: article.createTime,
+                updateTime: article.updateTime,
+                description: article.description,
+                imgSrc: article.imgSrc
+            })).sort((a1, a2) => a1.updateTime - a2.updateTime)
+        );
+        setLoadArticle(false);
     }, []);
 
     useEffect(() => {
@@ -130,6 +136,10 @@ const Article: React.FC<ArticleProps> = (props) => {
         open={props.open}
         zIndex={props.zIndex}
         onContextMenu={props.onContextMenuClick && handleContextMenuClick}>
+            <LoadingBg 
+                show={isLoadArticle && isOpened}
+                loadingText={'加载文章中...'}
+                backgroundColor={'rgba(255, 255, 255, 0.7)'}/>
             <div style={{
                 height: '10vh',
                 margin: '0 3vw',

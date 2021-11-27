@@ -14,8 +14,10 @@ import SekaiSettings from "../sekai_settings";
 import {appContext} from "../../context/AppContextWrapper";
 
 import { useMDSnackTip } from "../../components/md_snack_tip";
+import { getArticleContent } from "../../api/article";
+import LoadingBg from "../../components/loading_bg/LoadingBg";
 
-const NOT_CHANGE_CONTENT_FLAG = '\0';
+const NOT_CHANGE_CONTENT_FLAG = '$content$';
 
 type Content = {
     chat: string,
@@ -38,6 +40,8 @@ const ArticleContent: React.FC = () => {
     const [isHistoryOpen, setHistoryOpen] = useState(false);
     const [isSekaiSettingsOpen, setSekaiSettingsOpen] = useState(false);
     const [isChatWindowOpen, setChatWindowOpen] = useState(true);
+
+    const [isLoadingArticleContent, setLoadingArticleContent] = useState(false);
 
     const currentMdContentText = useMemo(() => {
         if (currentContent === null) return '';
@@ -63,33 +67,17 @@ const ArticleContent: React.FC = () => {
     }, [currentContent, contents]);
 
     const requestContents = useCallback(async (articleId: number) => {
-        setContents([
-            {
-                chat: '这是你的第一篇测试文章这是你的第一篇测试文章这是你的第一篇测试文章这是你的第一篇测试文章这是你的第一篇测试文章这是你的第一篇测试文章这是你的第一篇测试文章这是你的第一篇测试文章这是你的第一篇测试文章',
-                content: null
-            },
-            {
-                chat: '不管怎么样，都还是好好写一下吧',
-                content: null
-            },
-            {
-                chat: '下一个测试下显示md',
-                content: null
-            },
-            {
-                chat: '这是一段md的内容',
-                content: '# 一篇测试文章\n> 青空天下第一'
-            },
-            {
-                chat: '这里接着显示上一段的内容',
-                content: NOT_CHANGE_CONTENT_FLAG
-            },
-            {
-                chat: '最后结束了',
-                content: null
-            }
-        ]);
+        setLoadingArticleContent(true);
+        const resp = await getArticleContent(articleId, 0, 0);
+        if (!resp) return;
+        setContents(
+            resp.data.map(content => ({
+                chat: content.chat,
+                content: content.content
+            }))
+        );
         setCurrentContent(0);
+        setLoadingArticleContent(false);
     }, []);
 
     const nextContent = useCallback(() => {
@@ -147,6 +135,7 @@ const ArticleContent: React.FC = () => {
 
     const handleSekaiSettingsLoadEnd = () => {
         setSekaiSettingsOpen(false);
+        setChatWindowOpen(true);
     };
 
     const handleSekaiSettingsReturnClick = () => {
@@ -179,6 +168,10 @@ const ArticleContent: React.FC = () => {
 
     return (
         <>
+            <LoadingBg 
+                show={isLoadingArticleContent}
+                loadingText={'加载文章中...'}
+                backgroundColor={'rgba(255, 255, 255, 0.7)'}/>
             <div style={{
                 position: "relative",
                 overflow: "hidden",
