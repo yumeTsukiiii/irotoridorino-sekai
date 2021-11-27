@@ -95,6 +95,7 @@ const Article: React.FC<ArticleProps> = (props) => {
     const requestArticles = useCallback(async () => {
         setLoadArticle(true);
         const resp = await getArticlePaged(currentPage, pageSize);
+        setLoadArticle(false);
         if (!resp) return;
         setArticles(
             resp.data.map(article => ({
@@ -106,7 +107,6 @@ const Article: React.FC<ArticleProps> = (props) => {
                 imgSrc: article.imgSrc
             })).sort((a1, a2) => a1.updateTime - a2.updateTime)
         );
-        setLoadArticle(false);
     }, [currentPage]);
 
     useEffect(() => {
@@ -160,27 +160,34 @@ const Article: React.FC<ArticleProps> = (props) => {
                     overflow: "hidden"
                 }}>
                     <SekaiPagination
+                        itemWidth={'2vw'}
+                        itemHeight={'3.6vh'}
+                        textSize={'0.8vw'}
                         currentPage={currentPage}
                         onChange={handleCurrentPageChange}/>
                 </div>
                 <SekaiCardButton
-                    width={82}
-                    textStyle={{fontSize: 12}}
+                    width={'8vw'}
+                    height={'5vh'}
+                    textStyle={{fontSize: '1.2vw'}}
                 >OPTION</SekaiCardButton>
                 <div style={{flexGrow: 1}}/>
                 <SekaiCardButton
-                    width={82}
+                    width={'7vw'}
+                    height={'5vh'}
+                    textStyle={{fontSize: '1.2vw'}}
                     style={{
-                        marginLeft: 16
+                        marginLeft: '6vw'
                     }}
-                    textStyle={{fontSize: 12}}
                 >LOAD</SekaiCardButton>
                 <SekaiCardButton
-                    width={82}
+                    width={'7vw'}
+                    height={'5vh'}
+                    textStyle={{fontSize: '1.2vw'}}
                     style={{
-                        marginLeft: 32
+                        marginLeft: '3vw'
                     }}
-                    textStyle={{fontSize: 12}}
+
                     onClick={handleExitBtnClick}
                 >EXIT</SekaiCardButton>
             </div>

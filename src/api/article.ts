@@ -16,7 +16,7 @@ interface ArticleContent {
 
 export const getArticlePaged = (page: number, pageSize: number) => {
     return request.get<Article[]>('/articles', {
-        params: { page }
+        params: { page, pageSize }
     });
     // {
     //     id: number

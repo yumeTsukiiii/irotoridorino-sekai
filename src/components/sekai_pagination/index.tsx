@@ -12,9 +12,10 @@ type SekaiPaginationProps = {
 
 const defaultProps = {
     currentPage: 0 as number,
-    itemHeight: 24 as string|number,
+    itemHeight: 24 as CSSProperties['height'],
     pageSize: 20 as number,
-    itemWidth: 24 as number
+    itemWidth: 24 as CSSProperties['width'],
+    textSize: 12 as CSSProperties['fontSize']
 }
 
 const SekaiPagination: React.FC<SekaiPaginationProps> = (props) => {
@@ -42,7 +43,7 @@ const SekaiPagination: React.FC<SekaiPaginationProps> = (props) => {
                             lrLineWidth={1}
                             tbLineHeight={1}
                             textStyle={{
-                                fontSize: 12
+                                fontSize: props.textSize
                             }}
                             style={{
                                 marginLeft: index === 0 ? 0 : 1,
