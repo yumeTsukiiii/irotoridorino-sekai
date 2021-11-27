@@ -4,22 +4,23 @@ import Entry from "./pages/entry/Entry";
 import Main from "./pages/main/Main";
 import WorldEndLove from "./pages/world_end_love/WorldEndLove";
 import Article from "./pages/article";
+import ArticleContent from "./pages/article_content";
 
 const AppRouter: React.FC = () => {
     return (
         <HashRouter>
             <Route exact path={"/"}>
-                {/*<Entry/>*/}
-                <Article/>
+                <Entry/>
+                {/*<ArticleContent/>*/}
+            </Route>
+            <Route exact path={"/article/:articleId"}>
+                <ArticleContent/>
             </Route>
             <Route path={'/main'}>
                 <Main/>
             </Route>
             <Route path={'/world_end_love'}>
                 <WorldEndLove/>
-            </Route>
-            <Route path={'/article'}>
-                <Article/>
             </Route>
         </HashRouter>
     )

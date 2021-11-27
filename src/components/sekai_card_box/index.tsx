@@ -16,7 +16,9 @@ const defaultProps = {
     borderStartColor: 'rgb(24, 21, 65)' as string,
     borderEndColor: 'rgb(35, 218, 255)' as string,
     tbLineHeight: 2 as string|number,
+    tbLineLr: 0 as string|number,
     lrLineWidth: 6 as string|number,
+    lrLineTb: -2 as string|number,
     canHover: true as boolean,
     clearHoverStyle: false as boolean
 }
@@ -35,12 +37,12 @@ const SekaiCardBox: React.FC<SekaiCardBoxProps> = (props) => {
                 backgroundColor: lProps.color,
                 position: "absolute",
                 top: lProps.top,
-                left: 0,
-                right: 0,
+                left: props.tbLineLr,
+                right: props.tbLineLr,
                 bottom: lProps.bottom
             }}/>
         );
-    }, [props.tbLineHeight]);
+    }, [props.tbLineHeight, props.tbLineLr]);
 
     // 该组件的left和right的border
     const VerticalLine = useMemo<React.FC<{
@@ -52,13 +54,13 @@ const SekaiCardBox: React.FC<SekaiCardBoxProps> = (props) => {
                 width: props.lrLineWidth,
                 backgroundImage: `linear-gradient(${props.borderStartColor}, ${props.borderEndColor})`,
                 position: "absolute",
-                top: -2,
-                bottom: -2,
+                top: props.lrLineTb,
+                bottom: props.lrLineTb,
                 left: lProps.left,
                 right: lProps.right,
             }}/>
         );
-    }, [props.lrLineWidth, props.borderStartColor, props.borderEndColor]);
+    }, [props.lrLineWidth, props.borderStartColor, props.borderEndColor, props.lrLineTb]);
 
     // 内部children容器的top和bottom属性，控制高度
     const containerTb = useMemo(() => {

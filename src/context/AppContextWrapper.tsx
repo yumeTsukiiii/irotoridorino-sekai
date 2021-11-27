@@ -52,6 +52,14 @@ import LoadDataBoxBackground from '../assets/img/load_data_box_background.png';
 import ArticleBg from '../assets/img/article_bg.png';
 import LoadingBg from "../components/loading_bg/LoadingBg";
 
+import ChatAvatarShinkuBg from '../assets/img/chat_avatar_shinku.png';
+import HistoryAvatarShinkuBg from '../assets/img/history_avatar_shinku.png';
+import FCPlay from '../assets/img/fc_play_1.png';
+import FCPlayHover from '../assets/img/fc_play_2.png';
+import ArticleBook from '../assets/img/article_book.png';
+import SysWindowLeft from '../assets/img/sys_window_left.png';
+import SysWindowRight from '../assets/img/sys_window_right.png';
+
 import './app_context_wrapper.css';
 
 type GameAssetItem = {
@@ -61,23 +69,13 @@ type GameAssetItem = {
 }
 
 type BgAssets = {
-    titleBgA: string,
-    titleBgB: string,
-    titleBgC: string,
-    titleBgD: string,
-    titleLogo: string,
-    loadDataBackground: string,
-    loadDataBoxBackground: string,
-    progress: string,
-    articleBg: string
+    [key in keyof BgAssetsResult]: string
 }
 
 type GameAssets = Array<GameAssetItem>
 
 type GameAssetsLoadResultItem = {
-    bg: HTMLImageElement,
-    title: HTMLImageElement,
-    gallery: HTMLImageElement
+    [key in keyof GameAssetItem]: HTMLImageElement
 }
 
 export type GameAssetsResult = Array<GameAssetsLoadResultItem>
@@ -91,7 +89,14 @@ export type BgAssetsResult = {
     loadDataBackground: HTMLImageElement,
     loadDataBoxBackground: HTMLImageElement,
     progress: HTMLImageElement,
-    articleBg: HTMLImageElement
+    articleBg: HTMLImageElement,
+    chatAvatarShinkuBg: HTMLImageElement,
+    historyAvatarShinkuBg: HTMLImageElement
+    articleBook: HTMLImageElement,
+    fcPlay: HTMLImageElement,
+    fcPlayHover: HTMLImageElement,
+    sysWindowLeft: HTMLImageElement,
+    sysWindowRight: HTMLImageElement
 }
 
 type AppContext = {
@@ -208,7 +213,14 @@ const bgAssets: BgAssets = {
     loadDataBackground: LoadDataBackground,
     loadDataBoxBackground: LoadDataBoxBackground,
     progress: Progress,
-    articleBg: ArticleBg
+    articleBg: ArticleBg,
+    chatAvatarShinkuBg: ChatAvatarShinkuBg,
+    historyAvatarShinkuBg: HistoryAvatarShinkuBg,
+    articleBook: ArticleBook,
+    fcPlay: FCPlay,
+    fcPlayHover: FCPlayHover,
+    sysWindowLeft: SysWindowLeft,
+    sysWindowRight: SysWindowRight
 };
 
 const bgms = [

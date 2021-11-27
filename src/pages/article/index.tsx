@@ -1,3 +1,5 @@
+// noinspection ES6MissingAwait
+
 import React, {CSSProperties, useCallback, useContext, useEffect, useState} from "react";
 import LoadDataBackgroundImg from '../../assets/img/load_data_background.png'
 import SekaiCardBox from "../../components/sekai_card_box";
@@ -6,6 +8,8 @@ import SekaiCardData from "../../components/sekai_card_data";
 import SekaiPagination from "../../components/sekai_pagination";
 import {appContext} from "../../context/AppContextWrapper";
 import {useHistory} from "react-router";
+import classes from './index.module.css';
+import FadeDialog from "../../components/fade_dialog";
 
 interface ArticleData {
     id: number
@@ -27,7 +31,18 @@ const BorderContainer: React.FC<{style?: CSSProperties}> = (props) => {
     );
 };
 
-const Article: React.FC = () => {
+type ArticleProps = {
+    open: boolean,
+    onExitClick?: () => any,
+    onItemClick?: () => any,
+    onContextMenuClick?: () => any
+} & Partial<Readonly<typeof defaultProps>>;
+
+const defaultProps = {
+    zIndex: 999 as number
+}
+
+const Article: React.FC<ArticleProps> = (props) => {
 
     const ctx = useContext(appContext);
     const history = useHistory();
@@ -36,15 +51,27 @@ const Article: React.FC = () => {
     const pageSize = 12;
     const [articles, setArticles] = useState<ArticleData[]>([]);
     const [currentArticleIndex, setCurrentArticleIndex] = useState<number|null>(null);
+    const [isOpened, setOpened] = useState(false);
 
     const handleCurrentPageChange = useCallback(async (value) => {
         setCurrentPage(value);
         await ctx.playBgm('sekai_card_box_click', true);
     }, [ctx]);
 
-    const handleDataItemClick = useCallback(async () => {
-        await ctx.playBgm('sekai_card_box_no_data_click', true);
-    }, [ctx]);
+    const handleDataItemClick = useCallback(async (itemIndex: number) => {
+        if (currentArticleIndex === null) {
+            ctx.playBgm('sekai_card_box_no_data_click', true);
+            return;
+        }
+        ctx.playBgm('sekai_card_box_click', true);
+        history.replace(`/article/${articles[currentArticleIndex].id}`);
+        props.onItemClick?.();
+    }, [ctx, currentArticleIndex, articles, history]);
+
+    const handleContextMenuClick = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
+        event.preventDefault();
+        props.onContextMenuClick?.();
+    }, [props.onContextMenuClick]);
 
     const handleDataItemHover = useCallback((itemIndex: number) => {
         if (itemIndex >= articles.length) {
@@ -59,9 +86,9 @@ const Article: React.FC = () => {
     }, []);
 
     const handleExitBtnClick = useCallback(async () => {
-        history.goBack();
+        props.onExitClick?.();
         await ctx.playBgm('sekai_card_box_click', true);
-    }, [ctx, history]);
+    }, [ctx, props.onExitClick]);
 
     const requestArticles = useCallback(async () => {
         setArticles(Array(4).fill(0).map((_, index) => (
@@ -82,22 +109,30 @@ const Article: React.FC = () => {
         requestArticles();
     }, [requestArticles, currentPage]);
 
+    useEffect(() => {
+        if (props.open) {
+            if (!isOpened) {
+                setOpened(true);
+            }
+        }
+    }, [props.open, isOpened]);
+
     return (
-        <div style={{
-            width: '100vw',
-            height: '100vh',
+        <FadeDialog style={{
             backgroundImage: `url(${LoadDataBackgroundImg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundAttachment: "fixed",
-            display: "flex",
             flexDirection: "column",
             alignItems: "center",
-        }}>
+        }}
+        open={props.open}
+        zIndex={props.zIndex}
+        onContextMenu={props.onContextMenuClick && handleContextMenuClick}>
             <div style={{
                 height: '10vh',
-                width: '96vw',
+                margin: '0 3vw',
                 display: "flex",
                 alignItems: "center"
             }}>
@@ -141,7 +176,9 @@ const Article: React.FC = () => {
                 >EXIT</SekaiCardButton>
             </div>
             <SekaiCardBox
-                width={'99vw'}
+                style={{
+                    margin: '0 1vw'
+                }}
                 height={'86vh'}
                 canHover={false}
                 containerStyle={{
@@ -170,6 +207,7 @@ const Article: React.FC = () => {
                                 ).fill(0).map<Partial<ArticleData>>(() => ({}))
                             ].map((data, index) => (
                                 <SekaiCardData
+                                    key={`article-${data.id ?? `index-${index}`}`}
                                     dataIndex={index + 1}
                                     width={'23.75%'}
                                     style={{
@@ -177,7 +215,7 @@ const Article: React.FC = () => {
                                         marginTop: '1%',
                                         marginBottom: '1%'
                                     }}
-                                    onClick={handleDataItemClick}
+                                    onClick={() => handleDataItemClick(index)}
                                     src={data.imgSrc ?? undefined}
                                     date={data.createTime ? new Date(data.createTime) : undefined}
                                     onHover={() => handleDataItemHover(index)}
@@ -244,8 +282,10 @@ const Article: React.FC = () => {
                     {currentArticleIndex !== null ? articles[currentArticleIndex].title : null}
                 </BorderContainer>
             </SekaiCardBox>
-        </div>
+        </FadeDialog>
     )
 };
+
+Article.defaultProps = defaultProps;
 
 export default Article;

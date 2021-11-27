@@ -35,6 +35,7 @@ const SekaiPagination: React.FC<SekaiPaginationProps> = (props) => {
                 Array(props.pageSize).fill(0).map((_, index) => {
                     return (
                         <SekaiCardButton
+                            key={`sekai_page_button_${index}`}
                             hover={index === props.currentPage ? true : undefined}
                             height={props.itemHeight}
                             width={props.width ? '100%' : props.itemWidth}

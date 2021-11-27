@@ -4,7 +4,8 @@ import './tip_menu.css';
 
 type TipMenuProps = {
     tipText: string,
-    show: boolean
+    show: boolean,
+    style?: CSSProperties
 } & Partial<Readonly<typeof defaultProps>>
 
 const defaultProps = {
@@ -88,14 +89,24 @@ const TipMenu: React.FC<TipMenuProps> = (props: TipMenuProps) => {
             className={'action'} style={styles.noText}>{props.noText}</button>
     ) : null);
 
+    const handleMenuClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation();
+        props.onMenuClick?.(event);
+    };
+
     return (
         <div
-            className={anime}
+            // className={anime}
             style={{
                 ...styles.root,
-                display: display
+                // display: display,
+                ...props.style,
+                transition: 'transform 0.3s, visibility 0.3s',
+                transform: `${props.style?.transform ? props.style.transform + ' ' : '' }${props.show ? 'scaleX(1)' : 'scaleX(0)'}`,
+                visibility: props.show ? "visible" : "hidden",
+
             }}
-            onClick={props.onMenuClick}>
+            onClick={handleMenuClick}>
             <img alt={'menu_bg'} src={MenuBg} width={props.width}/>
             <p style={styles.tipText}>{props.tipText}</p>
             <YesText/>

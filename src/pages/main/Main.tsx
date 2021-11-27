@@ -1,4 +1,6 @@
-import React, {CSSProperties, useContext, useEffect} from 'react';
+// noinspection JSIgnoredPromiseFromCall
+
+import React, {CSSProperties, useContext, useEffect, useState} from 'react';
 import TitleBg1A from '../../assets/img/title_bg1_A.png';
 import TitleBg1B from '../../assets/img/title_bg1_B.png';
 import TitleBg1C from '../../assets/img/title_bg1_C.png';
@@ -8,6 +10,7 @@ import './main.css';
 import AnimationButton from "../../components/anime_button/AnimationButton";
 import {useHistory} from "react-router";
 import {appContext} from "../../context/AppContextWrapper";
+import Article from "../article";
 
 type MainProps = {
 
@@ -85,6 +88,8 @@ const Main: React.FC<MainProps> = () => {
         } as CSSProperties
     };
 
+    const [isArticlePageOpen, setArticlePageOpen] = useState(false);
+
     const handleWorldEndLoveClick = () => {
         ctx.playBgm('start');
         ctx.showWhiteBg().then(() => {
@@ -96,7 +101,15 @@ const Main: React.FC<MainProps> = () => {
 
     const handleArticleBtnClick = () => {
         ctx.playBgm('animation_btn_click');
-        history.push('/article');
+        setArticlePageOpen(true);
+    };
+
+    const handleArticlePageExitBtnClick = () => {
+        setArticlePageOpen(false);
+    }
+
+    const handleArticlePageContextMenuClick = () => {
+        setArticlePageOpen(false);
     };
 
     const handleBtnHover = () => {
@@ -140,6 +153,10 @@ const Main: React.FC<MainProps> = () => {
                     subText={'文章'}
                     onHover={handleBtnHover}/>
             </div>
+            <Article
+                open={isArticlePageOpen}
+                onExitClick={handleArticlePageExitBtnClick}
+                onContextMenuClick={handleArticlePageContextMenuClick}/>
         </div>
     )
 };
