@@ -21,7 +21,6 @@ const AnimationButton: React.FC<AnimationButtonProps> = (props: AnimationButtonP
     const [hover, setHover] = useState<boolean | null>(null);
 
     const onBtnHover = useCallback(() => {
-        console.log('233')
         props.onHover?.call(null);
         setHover(true);
     }, [props.onHover]);

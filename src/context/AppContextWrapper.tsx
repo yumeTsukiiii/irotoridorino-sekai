@@ -123,7 +123,7 @@ export const appContext = React.createContext<AppContext>({
     stopBgm: () => {},
     showWhiteBg: () => Promise.resolve(),
     hideWhiteBg: () => Promise.resolve(),
-    hideLoadingAssets: () => {}
+    hideLoadingAssets: () => {},
 })
 
 const gameAssets: GameAssets = [
@@ -491,7 +491,7 @@ const AppContextWrapper: React.FC = (props) => {
         stopBgm,
         showWhiteBg,
         hideWhiteBg,
-        hideLoadingAssets
+        hideLoadingAssets,
     }), [getBgAssetsResult, getGameAssetsResult, hideLoadingAssets, hideWhiteBg, playBgm, preloadBgAssets, preloadBgm, preloadGameAssets, showWhiteBg, stopBgm]);
 
     return (

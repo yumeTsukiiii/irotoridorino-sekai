@@ -13,6 +13,8 @@ import ArticleContentsHistory, {HistoryContent} from "../article_contents_histor
 import SekaiSettings from "../sekai_settings";
 import {appContext} from "../../context/AppContextWrapper";
 
+import { useMDSnackTip } from "../../components/md_snack_tip";
+
 const NOT_CHANGE_CONTENT_FLAG = '\0';
 
 type Content = {
@@ -27,6 +29,7 @@ const ArticleContent: React.FC = () => {
     const { articleId } = useParams<'articleId'>();
     const ctx = useContext(appContext);
     const navigate = useNavigate();
+    const { showError } = useMDSnackTip();
 
     const [contents, setContents] = useState<Content[]>([]);
     const [currentContent, setCurrentContent] = useState<number|null>(null);
@@ -167,6 +170,7 @@ const ArticleContent: React.FC = () => {
 
     useEffect(() => {
         if (!articleId) {
+            showError('没有文章？！')
             return;
         }
         // noinspection JSIgnoredPromiseFromCall
