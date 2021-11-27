@@ -1,5 +1,5 @@
 import EventEmitter from "events";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useMDSnackTip } from "../md_snack_tip";
 
 const eventBus = new EventEmitter();
@@ -23,17 +23,17 @@ export const showInfo = (msg: string) => {
 export const MDSnackTipEventReceiver: React.FC = (props) => {
     const mdSnackTip = useMDSnackTip();
 
-    const showInfoTip = (msg: string) => {
+    const showInfoTip = useCallback((msg: string) => {
         mdSnackTip.showInfo(msg);
-    }
+    }, [mdSnackTip]);
 
-    const showSuccessTip = (msg: string) => {
+    const showSuccessTip = useCallback((msg: string) => {
         mdSnackTip.showSuccess(msg);
-    }
+    }, [mdSnackTip]);
 
-    const showErrorTip = (msg: string) => {
+    const showErrorTip = useCallback((msg: string) => {
         mdSnackTip.showError(msg);
-    }
+    }, [mdSnackTip]);
 
     useEffect(() => {
         eventBus.addListener(MD_SNACK_TIP_INFO_MESSAGE_EVENT, showInfoTip);
@@ -44,7 +44,7 @@ export const MDSnackTipEventReceiver: React.FC = (props) => {
             eventBus.removeListener(MD_SNACK_TIP_SUCCESS_MESSAGE_EVENT, showSuccessTip);
             eventBus.removeListener(MD_SNACK_TIP_ERROR_MESSAGE_EVENT, showErrorTip);
         }
-    }, []);
+    }, [showInfoTip, showSuccessTip, showErrorTip]);
 
     return (
         <>

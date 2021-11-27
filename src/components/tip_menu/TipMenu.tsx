@@ -65,17 +65,12 @@ const TipMenu: React.FC<TipMenuProps> = (props: TipMenuProps) => {
     };
 
     const [display, setDisplay] = useState('none');
-    const [anime, setAnime] = useState('hidden');
 
     useEffect(() => {
         if (display === 'none') {
             setDisplay(props.show ? 'block' : 'none');
         }
     }, [props.show, display]);
-
-    useEffect(() => {
-        setAnime(props.show ? 'shown' : 'hidden');
-    }, [props.show]);
 
     const YesText = () => (props.showYes ? (
         <button

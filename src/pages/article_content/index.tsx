@@ -92,7 +92,7 @@ const ArticleContent: React.FC = () => {
     const handleEndTipMenuYesClick = useCallback(async () => {
         setShowEndTip(false);
         navigate('/main', { replace: true });
-    }, []);
+    }, [navigate]);
 
     const handleEndTipMenuNoClick = useCallback((event) => {
         event.stopPropagation();
@@ -164,7 +164,7 @@ const ArticleContent: React.FC = () => {
         }
         // noinspection JSIgnoredPromiseFromCall
         requestContents(parseInt(articleId));
-    }, [articleId, requestContents]);
+    }, [articleId, requestContents, showError]);
 
     return (
         <>

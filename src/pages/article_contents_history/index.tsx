@@ -1,9 +1,8 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef} from "react";
 import SekaiCardBox from "../../components/sekai_card_box";
 import HistoryAvatarShinkuBg from '../../assets/img/history_avatar_shinku.png';
 import FCPlay from '../../assets/img/fc_play_1.png';
 import FCPlayHover from '../../assets/img/fc_play_2.png';
-import classes from './index.module.css';
 import FadeDialog from "../../components/fade_dialog";
 
 export type HistoryContent = {

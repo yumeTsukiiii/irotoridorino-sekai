@@ -8,7 +8,6 @@ import SekaiCardData from "../../components/sekai_card_data";
 import SekaiPagination from "../../components/sekai_pagination";
 import {appContext} from "../../context/AppContextWrapper";
 import {useNavigate} from "react-router";
-import classes from './index.module.css';
 import FadeDialog from "../../components/fade_dialog";
 import { getArticlePaged } from "../../api/article";
 import LoadingBg from "../../components/loading_bg/LoadingBg";
@@ -61,7 +60,7 @@ const Article: React.FC<ArticleProps> = (props) => {
         await ctx.playBgm('sekai_card_box_click', true);
     }, [ctx]);
 
-    const handleDataItemClick = useCallback(async (itemIndex: number) => {
+    const handleDataItemClick = useCallback(async () => {
         if (currentArticleIndex === null) {
             ctx.playBgm('sekai_card_box_no_data_click', true);
             return;
@@ -69,12 +68,12 @@ const Article: React.FC<ArticleProps> = (props) => {
         ctx.playBgm('sekai_card_box_click', true);
         navigate(`/article/${articles[currentArticleIndex].id}`, { replace: true })
         props.onItemClick?.();
-    }, [ctx, currentArticleIndex, articles, navigate]);
+    }, [ctx, currentArticleIndex, articles, navigate, props]);
 
     const handleContextMenuClick = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
         props.onContextMenuClick?.();
-    }, [props.onContextMenuClick]);
+    }, [props]);
 
     const handleDataItemHover = useCallback((itemIndex: number) => {
         if (itemIndex >= articles.length) {
@@ -91,7 +90,7 @@ const Article: React.FC<ArticleProps> = (props) => {
     const handleExitBtnClick = useCallback(async () => {
         props.onExitClick?.();
         await ctx.playBgm('sekai_card_box_click', true);
-    }, [ctx, props.onExitClick]);
+    }, [ctx, props]);
 
     const requestArticles = useCallback(async () => {
         setLoadArticle(true);
@@ -108,7 +107,7 @@ const Article: React.FC<ArticleProps> = (props) => {
             })).sort((a1, a2) => a1.updateTime - a2.updateTime)
         );
         setLoadArticle(false);
-    }, []);
+    }, [currentPage]);
 
     useEffect(() => {
         // noinspection JSIgnoredPromiseFromCall
@@ -225,7 +224,7 @@ const Article: React.FC<ArticleProps> = (props) => {
                                         marginTop: '1%',
                                         marginBottom: '1%'
                                     }}
-                                    onClick={() => handleDataItemClick(index)}
+                                    onClick={() => handleDataItemClick()}
                                     src={data.imgSrc ?? undefined}
                                     date={data.createTime ? new Date(data.createTime) : undefined}
                                     onHover={() => handleDataItemHover(index)}
