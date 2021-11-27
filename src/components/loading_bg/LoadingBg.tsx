@@ -56,4 +56,6 @@ const LoadingBg: React.FC<LoadingBgProps> = (props) => {
     );
 };
 
+LoadingBg.defaultProps = defaultProps;
+
 export default LoadingBg;
