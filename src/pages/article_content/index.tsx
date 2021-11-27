@@ -4,7 +4,7 @@ import ArticleBook from '../../assets/img/article_book.png';
 import MainWindow from "../../components/main_window/MainWindow";
 import ChatAvatarShinkuBg from '../../assets/img/chat_avatar_shinku.png'
 import Shinku1 from "../../assets/img/shinku_1.png";
-import {useRouteMatch, useHistory} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import gfm from 'remark-gfm';
 import classes from './index.module.css';
@@ -24,9 +24,9 @@ let jumpIndex: number | null = null;
 
 const ArticleContent: React.FC = () => {
 
-    const routeMatch = useRouteMatch<{articleId: string}>();
+    const { articleId } = useParams<'articleId'>();
     const ctx = useContext(appContext);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const [contents, setContents] = useState<Content[]>([]);
     const [currentContent, setCurrentContent] = useState<number|null>(null);
@@ -100,7 +100,7 @@ const ArticleContent: React.FC = () => {
 
     const handleEndTipMenuYesClick = useCallback(async () => {
         setShowEndTip(false);
-        history.replace('/main');
+        navigate('/main', { replace: true });
     }, []);
 
     const handleEndTipMenuNoClick = useCallback((event) => {
@@ -166,9 +166,12 @@ const ArticleContent: React.FC = () => {
     }, [isShowEndTip, isShowJumpTip]);
 
     useEffect(() => {
+        if (!articleId) {
+            return;
+        }
         // noinspection JSIgnoredPromiseFromCall
-        requestContents(parseInt(routeMatch.params.articleId));
-    }, [routeMatch.params.articleId, requestContents]);
+        requestContents(parseInt(articleId));
+    }, [articleId, requestContents]);
 
     return (
         <>

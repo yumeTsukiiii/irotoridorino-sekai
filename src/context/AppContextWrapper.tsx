@@ -100,9 +100,9 @@ export type BgAssetsResult = {
 }
 
 type AppContext = {
-    preloadGameAssets: (onLoad?: (eventObj: Object) => void, hideLoading?: boolean) => Promise<Object>
-    preloadBgAssets: (onLoad?: (eventObj: Object) => void, hideLoading?: boolean) => Promise<Object>
-    preloadBgm: (onLoad?: (eventObj: Object) => void, hideLoading?: boolean) => Promise<Object>
+    preloadGameAssets: (onLoad?: (eventObj: Object) => void, hideLoading?: boolean) => Promise<void>
+    preloadBgAssets: (onLoad?: (eventObj: Object) => void, hideLoading?: boolean) => Promise<void>
+    preloadBgm: (onLoad?: (eventObj: Object) => void, hideLoading?: boolean) => Promise<void>
     getGameAssetsResult: () => GameAssetsResult | undefined
     getBgAssetsResult: () => BgAssetsResult | undefined,
     playBgm: (id: string, replay?: boolean, onPlaying?: (ev: Event) => void) => Promise<void>,
@@ -114,9 +114,9 @@ type AppContext = {
 
 
 export const appContext = React.createContext<AppContext>({
-    preloadGameAssets: () => new Promise<Object>(() => {}),
-    preloadBgAssets: () => new Promise<Object>(() => {}),
-    preloadBgm: () => new Promise<Object>(() => {}),
+    preloadGameAssets: () => new Promise<void>(() => {}),
+    preloadBgAssets: () => new Promise<void>(() => {}),
+    preloadBgm: () => new Promise<void>(() => {}),
     getGameAssetsResult: () => undefined,
     getBgAssetsResult: () => undefined,
     playBgm: () => Promise.resolve(),
@@ -283,10 +283,10 @@ const AppContextWrapper: React.FC = (props) => {
             } else {
                 setLoadText('加载资源图片完成啦～')
             }
-            return Promise.resolve<Object>({});
+            return Promise.resolve();
         }
 
-        return new Promise<Object>((resolve) => {
+        return new Promise<void>((resolve) => {
             const newGameAssetsResult = gameAssets.map((gameAssetItem) => {
                 const totalCount = gameAssets.length * Object.keys(gameAssetItem).length;
 
@@ -324,10 +324,10 @@ const AppContextWrapper: React.FC = (props) => {
             } else {
                 setLoadText('加载背景图片完成啦～')
             }
-            return Promise.resolve<Object>({});
+            return Promise.resolve();
         }
 
-        return new Promise<Object>((resolve) => {
+        return new Promise<void>((resolve) => {
             const onloadend = () => {
                 completeCount++;
                 setSubLoadText(`(${completeCount}/${totalCount})`);
@@ -364,10 +364,10 @@ const AppContextWrapper: React.FC = (props) => {
             } else {
                 setLoadText('加载音频完成啦～')
             }
-            return Promise.resolve<Object>({});
+            return Promise.resolve();
         }
 
-        return new Promise<Object>((resolve) => {
+        return new Promise<void>((resolve) => {
             bgms.forEach((bgm) => {
                 const audio = document.getElementById(bgm.id) as HTMLAudioElement | null;
                 if (audio) {

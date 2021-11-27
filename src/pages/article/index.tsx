@@ -7,7 +7,7 @@ import SekaiCardButton from "../../components/sekai_card_button";
 import SekaiCardData from "../../components/sekai_card_data";
 import SekaiPagination from "../../components/sekai_pagination";
 import {appContext} from "../../context/AppContextWrapper";
-import {useHistory} from "react-router";
+import {useNavigate} from "react-router";
 import classes from './index.module.css';
 import FadeDialog from "../../components/fade_dialog";
 
@@ -45,7 +45,7 @@ const defaultProps = {
 const Article: React.FC<ArticleProps> = (props) => {
 
     const ctx = useContext(appContext);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const [currentPage, setCurrentPage] = useState(0);
     const pageSize = 12;
@@ -64,9 +64,9 @@ const Article: React.FC<ArticleProps> = (props) => {
             return;
         }
         ctx.playBgm('sekai_card_box_click', true);
-        history.replace(`/article/${articles[currentArticleIndex].id}`);
+        navigate(`/article/${articles[currentArticleIndex].id}`, { replace: true })
         props.onItemClick?.();
-    }, [ctx, currentArticleIndex, articles, history]);
+    }, [ctx, currentArticleIndex, articles, navigate]);
 
     const handleContextMenuClick = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
         event.preventDefault();

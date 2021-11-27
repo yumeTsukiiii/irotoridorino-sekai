@@ -3,7 +3,7 @@ import Shinku1 from '../../assets/img/shinku_1.png';
 import './entry.css';
 import MainWindow from "../../components/main_window/MainWindow";
 import TipMenu from "../../components/tip_menu/TipMenu";
-import {useHistory} from "react-router";
+import {useNavigate} from "react-router";
 import {appContext} from "../../context/AppContextWrapper";
 
 type EntryProps = {
@@ -28,7 +28,7 @@ const Entry: React.FC<EntryProps> = () => {
         } as CSSProperties
     };
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const steps = [
         {
@@ -47,7 +47,7 @@ const Entry: React.FC<EntryProps> = () => {
             () => ctx.preloadBgm()
         ).then(() => {
             ctx.showWhiteBg().then(() => {
-                history.push('/main');
+                navigate('/main');
                 ctx.hideLoadingAssets();
                 ctx.hideWhiteBg();
             });
@@ -71,7 +71,7 @@ const Entry: React.FC<EntryProps> = () => {
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat"
             }}/>
-            <MainWindow name={'真红'} text={steps[currentStep].text}/>
+            <MainWindow name={'真红'} text={steps[currentStep].text} />
             <div style={styles.tipMenu}>
                 <TipMenu
                     tipText={'确认进入吗？'}

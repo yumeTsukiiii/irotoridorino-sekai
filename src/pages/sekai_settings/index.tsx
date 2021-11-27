@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import SysWindowLeft from '../../assets/img/sys_window_left.png';
 import SysWindowRight from '../../assets/img/sys_window_right.png';
 import SekaiSettingsButton from "../../components/sekai_settings_button";
-import {useHistory} from "react-router";
+import {useNavigate} from "react-router";
 import Article from "../article";
 import FadeDialog from "../../components/fade_dialog";
 
@@ -22,7 +22,7 @@ const defaultProps = {
 
 const SekaiSettings: React.FC<SekaiSettingsProps> = (props) => {
 
-    const history = useHistory();
+    const navigate = useNavigate();
     const [isArticlePageOpen, setArticlePageOpen] = useState(false);
 
     const handleOnRootClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -39,11 +39,11 @@ const SekaiSettings: React.FC<SekaiSettingsProps> = (props) => {
     };
 
     const handleExitBtnClick = () => {
-        history.replace('/');
+        navigate('/', { replace: true });
     };
 
     const handleTitleBtnClick = () => {
-        history.replace('/main');
+        navigate('/main', { replace: true });
     };
 
     const handleLoadBtnClick = () => {

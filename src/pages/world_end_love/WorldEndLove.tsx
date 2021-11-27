@@ -4,7 +4,7 @@ import FeatherBackground from "../../components/feather_background/FeatherBackgr
 import Center from "../../components/center/Center";
 import './world_end_love.css';
 import {appContext, BgAssetsResult, GameAssetsResult} from "../../context/AppContextWrapper";
-import {useHistory} from "react-router";
+import {useNavigate} from "react-router";
 
 type WorldEndLoveProps = {
 
@@ -66,13 +66,13 @@ const WorldEndLove: React.FC<WorldEndLoveProps> = (props: WorldEndLoveProps) => 
     };
 
     const ctx = useContext(appContext);
-    const history = useHistory();
+    const navigate = useNavigate();
     const gameAssetsResult = ctx.getGameAssetsResult() as GameAssetsResult;
     const bgAssetsResult = ctx.getBgAssetsResult() as BgAssetsResult;
 
     useEffect(() => {
         if (gameAssetsResult.length === 0) {
-            history.replace("/");
+            navigate("/", { replace: true });
             return;
         }
         setTimeout(() => {
@@ -85,14 +85,14 @@ const WorldEndLove: React.FC<WorldEndLoveProps> = (props: WorldEndLoveProps) => 
             })).then(() => {
                 ctx.showWhiteBg().then(() => {
                     ctx.hideWhiteBg();
-                    history.replace('/main');
+                    navigate('/main', { replace: true });
                 });
             });
         }, 1500);
         return () => {
             ctx.stopBgm('world_end_love_bgm');
         };
-    }, [ctx, history, gameAssetsResult.length]);
+    }, [ctx, navigate, gameAssetsResult.length]);
 
     return (
         <div style={styles.root}>

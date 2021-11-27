@@ -8,7 +8,7 @@ import TitleBg1D from '../../assets/img/title_bg1_D.png';
 import TitleLogo from '../../assets/img/title_logo1.png';
 import './main.css';
 import AnimationButton from "../../components/anime_button/AnimationButton";
-import {useHistory} from "react-router";
+import {useNavigate} from "react-router";
 import {appContext} from "../../context/AppContextWrapper";
 import Article from "../article";
 
@@ -22,7 +22,7 @@ const defaultProps = {
 
 const Main: React.FC<MainProps> = () => {
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const bg = {
         backgroundPosition: "center",
@@ -95,7 +95,7 @@ const Main: React.FC<MainProps> = () => {
         ctx.showWhiteBg().then(() => {
             ctx.hideWhiteBg();
             ctx.stopBgm('main_bgm')
-            history.push('/world_end_love');
+            navigate('/world_end_love');
         });
     };
 
@@ -120,11 +120,11 @@ const Main: React.FC<MainProps> = () => {
 
     useEffect(() => {
         if (ctx.getGameAssetsResult()?.length === 0) {
-            history.replace('/');
+            navigate('/', { replace: true });
             return;
         }
         ctx.playBgm('main_bgm');
-    }, [ctx, history]);
+    }, [ctx, navigate]);
 
     return (
         <div style={styles.root}>
